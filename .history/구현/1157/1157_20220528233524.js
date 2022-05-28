@@ -6,15 +6,24 @@
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
 
+const { stringify } = require("querystring");
+
 function solution() {
   let input = require("fs")
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split(" ")
+    .split("\n")
     .map((val) => val.trim());
 
-  console.log(input[0] === "" ? 0 : input.length);
+  let ret = input.join("").toUpperCase().split("");
+  let arr = Array.from({ length: 26 }, () => 0);
+
+  for (let i = 0; i < ret.length; i++) {
+    arr[ret[i].charCodeAt(0) - 65]++;
+  }
+  let cnt = Math.max(...arr);
+  console.log(cnt);
 }
 
 solution();

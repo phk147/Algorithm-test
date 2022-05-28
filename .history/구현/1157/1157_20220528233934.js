@@ -11,10 +11,20 @@ function solution() {
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split(" ")
+    .split("\n")
     .map((val) => val.trim());
 
-  console.log(input[0] === "" ? 0 : input.length);
+  let ret = input.join("").toUpperCase().split("");
+  let arr = Array.from({ length: 26 }, () => 0);
+
+  for (let i = 0; i < ret.length; i++) {
+    arr[ret[i].charCodeAt(0) - 65]++;
+  }
+  let cnt = Math.max(...arr);
+
+  let ans = arr.filter((val) => val >= cnt);
+
+  console.log(ans.length >= 2 ? "?" : String.fromCharCode(arr.indexOf(cnt) + 65));
 }
 
 solution();

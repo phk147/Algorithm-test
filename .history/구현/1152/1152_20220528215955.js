@@ -14,7 +14,7 @@ function solution() {
     .split(" ")
     .map((val) => val.trim());
 
-  console.log(input[0] === "" ? 0 : input.length);
+  console.log(input[0] === " " ? 0 : input.length);
 }
 
 solution();

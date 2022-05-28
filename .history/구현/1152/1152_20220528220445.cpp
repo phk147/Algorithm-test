@@ -3,6 +3,20 @@ using namespace std;
 string s;
 vector<string> ans;
 
+vector<string> split(string input, string delimeter){
+  long long pos = 0;
+  string temp;
+  vector<string> ret;
+
+  while((pos=input.find(delimeter)) != string::npos){
+    temp = input.substr(0,pos);
+    ret.push_back(temp);
+    input.erase(0,pos+delimeter.length());
+  }
+  ret.push_back(input);
+  return ret;
+}
+
 int main()
 {
   freopen("input.txt", "r", stdin);
@@ -17,13 +31,9 @@ int main()
       cout<< "0"<<"\n";
       return 0;
     }
+    ans = split(s," ");
 
-    int count = 1;
-
-    for(int i=0;i<s.length();i++){
-      if(s[i] == ' ') count++;
-    }
-
+    int count = ans.size();
 
     if(s[0] == ' ') count--;
     if(s[s.length()-1] == ' ') count--;

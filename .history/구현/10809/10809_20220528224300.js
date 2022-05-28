@@ -11,10 +11,17 @@ function solution() {
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split(" ")
+    .split("\n")
     .map((val) => val.trim());
 
-  console.log(input[0] === "" ? 0 : input.length);
+  let ret = input.join("");
+  console.log(input);
+
+  let arr = Array.from({ length: 26 }, () => 0);
+
+  for (let i = 0; i < 26; i++) {}
+
+  console.log(arr);
 }
 
 solution();

@@ -11,10 +11,8 @@ function solution() {
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split(" ")
+    .split("\n")
     .map((val) => val.trim());
-
-  console.log(input[0] === "" ? 0 : input.length);
 }
 
 solution();
