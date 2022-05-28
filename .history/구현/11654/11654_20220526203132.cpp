@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n,m;
+string s,p;
+
+map<string,int> _map1;
+map<int,string> _map2;
+
+
+int main()
+{
+  freopen("input.txt", "r", stdin);
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin>>n>>m;
+
+    for(int i=1;i<n+1;i++){
+      cin>>s;
+      _map1[s]=i;
+      _map2[i]=s;
+    }
+
+    for(int j=0;j<m;j++){
+      cin>>p;
+      if(atoi(p.c_str())==0){
+        cout<<_map1[p]<<"\n";
+      } else {
+        cout<<_map2[atoi(p.c_str())]<<"\n";
+      }
+    }
+
+  return 0;
+}
