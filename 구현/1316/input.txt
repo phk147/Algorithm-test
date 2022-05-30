@@ -1,0 +1,7 @@
+6
+ab
+aa
+aca
+ba
+bb
+aca
