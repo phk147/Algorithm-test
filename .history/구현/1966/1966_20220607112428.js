@@ -16,14 +16,7 @@ function solution() {
 
   let [t, ...arr] = input;
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
-  }
+  console.log(t, arr);
 }
 
 solution();

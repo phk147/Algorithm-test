@@ -14,16 +14,9 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, ...arr] = input;
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
-  }
+  console.log(n, arr);
 }
 
 solution();

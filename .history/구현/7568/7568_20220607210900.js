@@ -14,16 +14,15 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, ...arr] = input;
+  let li = [];
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+  for (let i = 0; i < n; i++) {
+    let [x, y] = arr[i].split(" ");
+    li.push([x, y]);
   }
+  console.log(li);
+  console.log(n, arr);
 }
 
 solution();

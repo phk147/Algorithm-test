@@ -18,7 +18,10 @@ function solution() {
 
   while (t > 0) {
     let n,
-      m = arr[0].split(" ").map((val) => +val);
+      m = arr[0]
+        .join("")
+        .split(" ")
+        .map((val) => +val);
 
     console.log(n, m);
 

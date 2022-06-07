@@ -20,7 +20,7 @@ function solution() {
     let n,
       m = arr[0].split(" ").map((val) => +val);
 
-    console.log(n, m);
+    console.log(n, m, important);
 
     t--;
   }

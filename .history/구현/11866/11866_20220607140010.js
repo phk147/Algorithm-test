@@ -11,18 +11,10 @@ function solution() {
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split("\n")
+    .split(" ")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
-
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+  let [n,m] =input;
   }
 }
 

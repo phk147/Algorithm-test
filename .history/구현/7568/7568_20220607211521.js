@@ -14,16 +14,21 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, ...arr] = input;
+  let li = [];
+  let ans = [];
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+  for (let i = 0; i < n; i++) {
+    let [x, y] = arr[i].split(" ");
+    li.push([x, y]);
   }
+
+  for (let i = 0; i < n; i++) {
+    let cnt = li.filter((p) => li[i][0] < p[i][0] && li[i][1] < p[i][1]).length + 1;
+    ans.push(cnt);
+  }
+  console.log(li);
+  console.log(n, arr);
 }
 
 solution();

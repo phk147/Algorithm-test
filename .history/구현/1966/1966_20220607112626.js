@@ -17,13 +17,14 @@ function solution() {
   let [t, ...arr] = input;
 
   while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
+    let [n, m, important, ...num] = arr;
 
     console.log(n, m);
 
     t--;
   }
+
+  console.log(t, arr);
 }
 
 solution();

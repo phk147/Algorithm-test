@@ -14,16 +14,10 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, ...arr] = input.map((val) => +val);
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
-  }
+  arr.sort((a, b) => b - a);
+  console.log(n, arr);
 }
 
 solution();

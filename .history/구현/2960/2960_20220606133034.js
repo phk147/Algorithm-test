@@ -14,16 +14,27 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+    
+    let [k,...arr] = input;
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
 
-    console.log(n, m);
+    let stk = [];
+    arr.forEach(val=>{
+      if(val !== "0"){
+        stk.push(val);
+      } else {
+        stk.pop();
+      }
+    })
+    
+    let ret=0;
+    if(stk.length !== 0){
+      ret = stk.reduce((acc,cnt)=> Number(acc)+Number(cnt));
 
-    t--;
-  }
+    }
+
+    console.log(ret);
+
 }
 
 solution();

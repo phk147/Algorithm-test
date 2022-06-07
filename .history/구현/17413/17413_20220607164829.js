@@ -14,16 +14,18 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
-
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+  let ret = "";
+  input = input.join("").split("");
+  if (input[0] === "<") {
+    console.log(input.indexOf("<"));
+    while (input.includes("<")) {
+      ret += input.splice(input.indexOf("<"), input.indexOf(">") + 1);
+    }
+  } else {
+    input = input.join("").split(" ");
   }
+
+  console.log(input, ret);
 }
 
 solution();

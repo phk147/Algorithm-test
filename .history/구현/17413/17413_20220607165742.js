@@ -14,15 +14,22 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let ret = "";
+  input = input.join("").split("");
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
+  if (input[0] === "<") {
+    while (input.includes("<")) {
+      ret += input.splice(input.indexOf("<"), input.indexOf(">") + 1);
+    }
 
-    console.log(n, m);
+    input = input.reverse().join("");
 
-    t--;
+    ret = ret.split("");
+    ret.splice(ret.indexOf(">") + 1, 0, input);
+
+    console.log(ret.join(""));
+  } else {
+    input = input.join("").split(" ");
   }
 }
 

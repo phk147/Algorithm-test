@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 int t,n,m,temp;
+queue<pair<int,int>> q;
+priority_queue<int> pq;
 
 int main()
 {
@@ -13,23 +15,21 @@ int main()
     cin>>t;
     
     while(t>0){
-      queue<pair<int,int>> q;
-      priority_queue<int> pq;
       int cnt =0;
       cin>>n>>m;
       for(int i=0;i<n;i++){
         cin>>temp;
-        q.push({i,temp});
+        q.push(pair<int,int>(i,temp));
         pq.push(temp);
       }
 
-      
       while(!q.empty()){
         int l = q.front().first;
-        int important = q.front().second;
+        int i = q.front().second;
         q.pop();
 
-        if(pq.top() == important){
+        if(pq.top() == i){
+          cout<<pq.top()<<":"<<l<<":"<<i<<":"<<m<<"\n";
           pq.pop();
           cnt++;
           if(l == m){
@@ -37,9 +37,8 @@ int main()
             break;
           }
         }
-        q.push({l,important});
+        q.push(make_pair(l,i));
       }
-
       t--;
     }
     

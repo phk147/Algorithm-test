@@ -14,16 +14,25 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, ...arr] = input.map((val) => +val);
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
+  arr.sort((a, b) => b - a);
 
-    console.log(n, m);
+  //mean
+  let psum = arr.reduce((a, c) => a + c);
+  let mean = Math.round(psum / n);
 
-    t--;
-  }
+  //middle
+  let middle = arr[parseInt(arr.length / 2)];
+
+  //mode
+  let cnt = Array.from({ length: 8001 }, () => 0);
+
+  arr.forEach((val) => {
+    cnt[val + 4000]++;
+  });
+
+  console.log(mean, middle, cnt);
 }
 
 solution();

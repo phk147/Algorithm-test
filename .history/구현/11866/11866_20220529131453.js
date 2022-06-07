@@ -14,15 +14,11 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let n = input[0];
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+  let ret = "";
+  for (let i = n; i >= 1; i--) {
+    console.log(ret.padStart(i, "*"));
   }
 }
 

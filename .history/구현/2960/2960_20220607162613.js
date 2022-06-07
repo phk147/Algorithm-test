@@ -11,18 +11,25 @@ function solution() {
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
     .trim()
-    .split("\n")
+    .split(" ")
     .map((val) => val.trim());
 
-  let [t, ...arr] = input;
+  let [n, k] = input.map((val) => +val);
+  let arr = Array.from({ length: 1001 }, () => 0);
+  let cnt = 0;
+  for (let i = 2; i <= n; i++) {
+    if (arr[i]) {
+      continue;
+    }
+    for (let j = i; j <= n; j += i) {
+      arr[j]++;
+      cnt++;
 
-  while (t > 0) {
-    let n,
-      m = arr[0].split(" ").map((val) => +val);
-
-    console.log(n, m);
-
-    t--;
+      if (cnt === k) {
+        console.log(j);
+        break;
+      }
+    }
   }
 }
 

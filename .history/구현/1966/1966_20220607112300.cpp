@@ -13,8 +13,8 @@ int main()
     cin>>t;
     
     while(t>0){
-      queue<pair<int,int>> q;
-      priority_queue<int> pq;
+    queue<pair<int,int>> q;
+    priority_queue<int> pq;
       int cnt =0;
       cin>>n>>m;
       for(int i=0;i<n;i++){
@@ -29,7 +29,10 @@ int main()
         int important = q.front().second;
         q.pop();
 
+
+
         if(pq.top() == important){
+
           pq.pop();
           cnt++;
           if(l == m){
