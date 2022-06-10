@@ -49,7 +49,7 @@ function solution() {
   if (flag === 0) {
     console.log(-1);
   } else {
-    console.log(arr.join(" "));
+    console.log(arr.map((v) => +v).join(" "));
   }
 }
 

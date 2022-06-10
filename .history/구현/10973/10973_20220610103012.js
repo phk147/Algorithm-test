@@ -21,8 +21,6 @@ function solution() {
     .split("")
     .map((v) => +v);
 
-  let flag = 0;
-
   for (let i = n - 1; i >= 0; i--) {
     if (arr[i - 1] > arr[i]) {
       let tmp = arr.splice(i, n - i);
@@ -31,25 +29,12 @@ function solution() {
       for (let j = tmp.length - 1; j >= 0; j--) {
         if (arr[arr.length - 1] > tmp[j] && tmp[j] > tmpMax) {
           tmpMax = tmp[j];
-          tmpIdx = j;
         }
       }
 
-      let num = arr[arr.length - 1];
-      arr[arr.length - 1] = tmp[tmpIdx];
-      tmp[tmpIdx] = num;
-
-      tmp.sort((a, b) => a - b);
-      arr.push(...tmp);
-      flag = 1;
+      console.log(tmp, arr);
       break;
     }
-  }
-
-  if (flag === 0) {
-    console.log(-1);
-  } else {
-    console.log(arr.join(" "));
   }
 }
 

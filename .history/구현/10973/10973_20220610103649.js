@@ -40,16 +40,16 @@ function solution() {
       tmp[tmpIdx] = num;
 
       tmp.sort((a, b) => a - b);
-      arr.push(...tmp);
+      arr.concat(tmp);
       flag = 1;
+
       break;
     }
   }
 
   if (flag === 0) {
-    console.log(-1);
+    cout << -1;
   } else {
-    console.log(arr.join(" "));
   }
 }
 

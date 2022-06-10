@@ -42,14 +42,14 @@ function solution() {
       tmp.sort((a, b) => a - b);
       arr.push(...tmp);
       flag = 1;
+      console.log(arr, tmp);
       break;
     }
   }
 
   if (flag === 0) {
-    console.log(-1);
+    cout << -1;
   } else {
-    console.log(arr.join(" "));
   }
 }
 
