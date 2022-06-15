@@ -18,7 +18,7 @@ class Queue {
   }
 
   pop() {
-    if (this.head !== this.tail) this.head++;
+    this.head++;
   }
 
   front() {

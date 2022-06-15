@@ -18,7 +18,7 @@ class Queue {
   }
 
   pop() {
-    if (this.head !== this.tail) this.head++;
+    this.head++;
   }
 
   front() {
@@ -47,6 +47,7 @@ function solution() {
 
   const testNum = input.shift();
 
+  let answer = [];
   let queue = new Queue(); //fifo
 
   input.forEach((val) => {
@@ -59,19 +60,21 @@ function solution() {
         console.log(queue.size());
         break;
       case "empty":
-        console.log(queue.size() === 0 ? 1 : 0);
+        answer.push(queue.size() === 0 ? 1 : 0);
         break;
       case "front":
-        console.log(queue.size() === 0 ? -1 : queue.front());
+        answer.push(queue.size() === 0 ? -1 : queue.front());
         break;
       case "back":
-        console.log(queue.size() === 0 ? -1 : queue.back());
+        answer.push(queue[queue.length - 1] || -1);
         break;
       default:
-        queue.push(+val.split(" ")[1]);
+        queue.push(val.split(" ")[1]);
         break;
     }
   });
+
+  console.log(answer.join("\n"));
 }
 
 solution();

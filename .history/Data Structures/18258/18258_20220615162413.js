@@ -18,7 +18,7 @@ class Queue {
   }
 
   pop() {
-    if (this.head !== this.tail) this.head++;
+    this.head++;
   }
 
   front() {
@@ -68,10 +68,12 @@ function solution() {
         console.log(queue.size() === 0 ? -1 : queue.back());
         break;
       default:
-        queue.push(+val.split(" ")[1]);
+        queue.push(val.split(" ")[1]);
         break;
     }
   });
+
+  console.log(answer.join("\n"));
 }
 
 solution();

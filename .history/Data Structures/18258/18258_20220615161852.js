@@ -18,7 +18,7 @@ class Queue {
   }
 
   pop() {
-    if (this.head !== this.tail) this.head++;
+    this.head++;
   }
 
   front() {
@@ -29,11 +29,6 @@ class Queue {
   back() {
     let data = this.data[this.tail - 1];
     return data;
-  }
-
-  size() {
-    let size = this.tail - this.head;
-    return size;
   }
 }
 
@@ -47,31 +42,34 @@ function solution() {
 
   const testNum = input.shift();
 
+  let answer = [];
   let queue = new Queue(); //fifo
 
   input.forEach((val) => {
     switch (val) {
       case "pop":
-        console.log(queue.size() === 0 ? -1 : queue.front());
+        console.log(queue.front());
         queue.pop();
         break;
       case "size":
-        console.log(queue.size());
+        answer.push(queue.length);
         break;
       case "empty":
-        console.log(queue.size() === 0 ? 1 : 0);
+        answer.push(queue[0] ? 0 : 1);
         break;
       case "front":
-        console.log(queue.size() === 0 ? -1 : queue.front());
+        answer.push(queue[0] || -1);
         break;
       case "back":
-        console.log(queue.size() === 0 ? -1 : queue.back());
+        answer.push(queue[queue.length - 1] || -1);
         break;
       default:
-        queue.push(+val.split(" ")[1]);
+        queue.push(val.split(" ")[1]);
         break;
     }
   });
+
+  console.log(answer.join("\n"));
 }
 
 solution();
