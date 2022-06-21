@@ -17,22 +17,19 @@ function solution() {
   let t = +input.shift();
   while (t--) {
     let n = +input.shift();
-    let arr = {};
+    let arr = [];
     for (let i = 0; i < n; i++) {
       let tmp = input.shift().split(" ");
-      if (arr[tmp[1]]) {
-        arr[tmp[1]]++;
-      } else {
-        arr[tmp[1]] = 1;
-      }
+      arr.push(tmp);
     }
+    let cnt=[];
+    arr.forEach(v=>{
+      let tmp = v[1];
+      let count = arr.filter(v=>v[1]===tmp).length;
+      let cnt.push(count);
+    })
 
-    let cnt = 1;
-    for (let key in arr) {
-      cnt *= arr[key] + 1;
-    }
-
-    console.log(cnt - 1);
+    console.log(arr);
   }
 }
 

@@ -8,6 +8,7 @@ ll go(ll a,ll b){
   ll _c = go(a,b / 2);
   _c= (_c*_c)%c;
   if(b%2) _c=(_c*a)%c;
+  cout<<_c<<"\n";
   return _c;
 }
 int main()
