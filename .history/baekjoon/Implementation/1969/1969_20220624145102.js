@@ -10,6 +10,16 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+function solution(input) {
+  //input
+  let [n, m] = input.shift().split(" ");
+  let dna = [];
+  let answer = [];
+
+  for (let i = 0; i < n; i++) {
+    let temp = input.shift();
+    dna.push(temp);
+  }
+}
 
 solution(input);

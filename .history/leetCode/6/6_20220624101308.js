@@ -10,6 +10,21 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+
+function solution(input) {
+  let s = input[0].split("");
+  let num = +input[1];
+  let len = s.length;
+  let arr = [];
+
+  let cnt = 0;
+  while (!s.length) {
+    let tmp = cnt % num;
+    cnt++;
+    let str = s.shift();
+  }
+
+  console.log(s, arr);
+}
 
 solution(input);

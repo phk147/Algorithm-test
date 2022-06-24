@@ -10,6 +10,25 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+
+function solution(input) {
+  let s = input[0];
+
+  s = s.split("");
+
+  let psum = 0;
+  s.forEach(v=>{
+    if(v==="I") psum+=1;
+    else if(v==="V") psum+=5;
+    else if(v==="X") psum+=10;
+    else if(v==="L") psum+=50;
+    else if(v==="C") psum+=100;
+    else if(v==="D") psum+=500;
+    else(v==="M") psum+=1000;
+  })
+
+
+
+}
 
 solution(input);

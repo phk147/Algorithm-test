@@ -10,6 +10,26 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+function solution(input) {
+  //input
+  let n = +input.shift();
+  let arr = [];
+
+  for (let i = 0; i < n; i++) {
+    let temp = input.shift().split(" ");
+    arr.push(temp);
+  }
+
+  let max = -Infinity;
+  let min = Infinity;
+
+  arr.forEach((v) => {
+    let year = v[3];
+    max = Math.max(max, year);
+    min = Math.min(min, year);
+  });
+
+  console.log(arr);
+}
 
 solution(input);

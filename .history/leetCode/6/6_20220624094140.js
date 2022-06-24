@@ -10,6 +10,7 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
 
-solution(input);
+function solution() {}
+
+solution();

@@ -10,6 +10,13 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+
+function solution(input) {
+  let s = input[0];
+  let num = input[1];
+
+  let arr = [new Array(num).fill(0)];
+  console.log(input);
+}
 
 solution(input);

@@ -8,8 +8,10 @@
 let input = require("fs")
   .readFileSync("input.txt") //"/dev/stdin"
   .toString()
+  .trim()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
 
-solution(input);
+function solution() {}
+
+solution();

@@ -10,6 +10,19 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+function solution(input) {
+  //input
+  let [n, m] = input.shift().split(" ");
+  let dna = [];
+
+  for (let i = 0; i < n; i++) {
+    let temp = input.shift();
+    dna.push(temp);
+  }
+
+  dna.sort((a, b) => (a > b) - (a < b));
+
+  console.log(n, m, dna);
+}
 
 solution(input);

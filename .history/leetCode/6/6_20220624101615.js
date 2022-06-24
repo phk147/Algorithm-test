@@ -10,6 +10,26 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+
+function solution(input) {
+  let s = input[0].split("");
+  let num = +input[1];
+  let len = s.length;
+  let arr = [new Array(num).fill([])];
+
+  let cnt = 0;
+  let check = num;
+  while (!s.length) {
+    let tmp = cnt % num;
+    cnt++;
+    if (check === num) {
+      check--;
+    }
+    let str = s.shift();
+    arr[tmp].push(str);
+  }
+
+  console.log(s, arr);
+}
 
 solution(input);

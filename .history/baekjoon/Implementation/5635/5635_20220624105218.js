@@ -10,6 +10,15 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution(input) {}
+function solution(input) {
+  //input
+  let n = +input.shift();
+  let arr = [];
+
+  for (let i = 0; i < n; i++) {
+    let temp = input.shift();
+    console.log(temp);
+  }
+}
 
 solution(input);
