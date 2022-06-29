@@ -10,6 +10,19 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution() {}
+let [m, n] = input
+  .shift()
+  .split(" ")
+  .map((v) => +v);
+
+let graph = [];
+for (let i = 0; i < n; i++) {
+  graph.push(input.shift().split(" "));
+}
+let visited = new Array(n).fill().map(() => new Array(m).fill(0));
+
+function solution() {
+  console.log(n, m, input, visited);
+}
 
 solution();

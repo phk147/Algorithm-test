@@ -10,6 +10,14 @@ let input = require("fs")
   .toString()
   .split("\n")
   .map((val) => val.trim());
-function solution() {}
 
-solution();
+class Queue {
+  constructor() {
+    this.arr = [];
+    this.head = 0;
+    this.tail = 0;
+  }
+}
+function solution(input) {}
+
+solution(input);
