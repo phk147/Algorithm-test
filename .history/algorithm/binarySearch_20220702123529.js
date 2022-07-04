@@ -12,6 +12,7 @@ function binarySearch(arr, target, start, end) {
     else if (arr[mid] > target) end = mid - 1;
     //찾는 값이 중간점의 값보다 크면 오른쪽확인 확인
     else start = mid + 1;
+    console.log(mid);
   }
   return -1;
 }
