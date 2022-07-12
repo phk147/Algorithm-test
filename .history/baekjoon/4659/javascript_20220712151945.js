@@ -1,0 +1,37 @@
+/**
+ * 제출용. 아래 로컬용을 지우고 제출하자.
+ */
+//  let input = require("fs").readFileSync("/dev/stdin").toString().trim().split("\n")
+/**
+ * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
+ */
+let input = require("fs")
+  .readFileSync("input.txt") //"/dev/stdin"
+  .toString()
+  .split("\n")
+  .map((val) => val.trim());
+function solution() {
+  while (input[0] !== "end") {
+    let s = input.shift().split("");
+    let check1 = false;
+    let check2 = false;
+    let check3 = false;
+
+    let a = ["a", "e", "i", "o", "u"];
+    for (let i = 0; i < s.length; i++) {
+      //a e i o u check
+      if (a.includes(s[i])) {
+        check1 = true;
+      }
+      //모음, 자음 3개 연속 check
+      if (a.includes(s[i]) && a.includes(s[i + 1]) && a.includes(s[i + 2])) {
+      }
+
+      //같은 글자 연속, 단 ee, oo ok
+    }
+
+    console.log(s);
+  }
+}
+
+solution();
