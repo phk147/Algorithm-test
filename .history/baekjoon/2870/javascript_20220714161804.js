@@ -45,7 +45,10 @@ function solution() {
     if (n.length !== 0) nums.push(n.join(""));
   }
 
-  nums.sort((a, b) => +a - +b);
+  nums.sort((a, b) => () => {
+    if (a.length === b.length) return a < b;
+    return a.length() < b.length;
+  });
   console.log(nums.join("\n"));
 }
 

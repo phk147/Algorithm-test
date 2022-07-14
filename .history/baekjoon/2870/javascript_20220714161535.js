@@ -12,7 +12,6 @@ let input = require("fs")
   .map((val) => val.trim());
 
 let n = +input.shift();
-
 function solution() {
   let nums = [];
   for (let i = 0; i < n; i++) {

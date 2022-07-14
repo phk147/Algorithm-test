@@ -12,41 +12,39 @@ let input = require("fs")
   .map((val) => val.trim());
 
 let n = +input.shift();
-
 function solution() {
   let nums = [];
   for (let i = 0; i < n; i++) {
     let temp = input.shift();
-    let n = [];
+    let n = "";
 
     for (let j = 0; j < temp.length; j++) {
       let tmp = temp.charCodeAt(j);
       //number
       if (!(tmp >= 97 && tmp <= 122)) {
         let num = String.fromCharCode(tmp);
+        console.log(num, n);
 
         if (num === "0") {
           if (temp[j + 1] === "0") continue;
-          else if ((temp.charCodeAt(j + 1) >= 97 && temp.charCodeAt(j + 1) <= 122) || j === temp.length - 1) {
+          else if (temp.charCodeAt(j + 1) >= 97 && temp.charCodeAt(j + 1) <= 122) {
             nums.push(num);
           } else {
             continue;
           }
-        } else {
-          n.push(num);
         }
-      } else {
-        if (n.length !== 0) {
-          nums.push(n.join(""));
-          n = [];
+        n += num;
+      }
+      if (temp.charCodeAt(j + 1) >= 97 && temp.charCodeAt(j + 1) <= 122) {
+        if (n !== "") {
+          nums.push(n);
+          n = "";
         }
       }
     }
-    if (n.length !== 0) nums.push(n.join(""));
   }
 
-  nums.sort((a, b) => +a - +b);
-  console.log(nums.join("\n"));
+  console.log(nums);
 }
 
 solution();

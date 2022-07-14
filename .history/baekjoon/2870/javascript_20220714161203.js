@@ -12,7 +12,6 @@ let input = require("fs")
   .map((val) => val.trim());
 
 let n = +input.shift();
-
 function solution() {
   let nums = [];
   for (let i = 0; i < n; i++) {
@@ -45,7 +44,7 @@ function solution() {
     if (n.length !== 0) nums.push(n.join(""));
   }
 
-  nums.sort((a, b) => +a - +b);
+  nums.sort();
   console.log(nums.join("\n"));
 }
 

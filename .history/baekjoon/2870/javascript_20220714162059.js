@@ -45,7 +45,7 @@ function solution() {
     if (n.length !== 0) nums.push(n.join(""));
   }
 
-  nums.sort((a, b) => +a - +b);
+  nums.sort();
   console.log(nums.join("\n"));
 }
 
