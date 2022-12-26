@@ -15,4 +15,4 @@ function solution(nums) {
   return goal === 0 ? true : false;
 }
 
-solution(nums);
+console.log(solution(nums));
