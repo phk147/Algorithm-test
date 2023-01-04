@@ -7,22 +7,20 @@
  */
 
 let input = require("fs")
-  .readFileSync("input.txt")
+  .readFileSync("input.txt") //"/dev/stdin"
   .toString()
-  .trim()
   .split("\n")
-  .map((i) => parseInt(i));
+  .map((val) => +val.trim());
 function solution() {
-  let sum = input.reduce((acc, cur) => acc + cur);
   let arr;
-
   for (let i = 0; i < 8; i++) {
     for (let j = i + 1; j < 9; j++) {
-      if (sum - input[i] - input[j] === 100) {
-        arr = input.filter((v) => v !== input[i] && v !== input[j]);
+      if (input.reduce((sum, item) => sum + item, 0) === input[i] + input[j] + 100) {
+        arr = input.filter((item) => item !== input[i] && item !== input[j]);
         break;
       }
     }
+    if (!!arr) break;
   }
   arr.sort((a, b) => a - b);
   for (let i = 0; i < 7; i++) console.log(arr[i]);

@@ -20,12 +20,12 @@ function solution() {
     for (let j = i + 1; j < 9; j++) {
       if (sum - input[i] - input[j] === 100) {
         arr = input.filter((v) => v !== input[i] && v !== input[j]);
+        arr.sort((a, b) => a - b);
+        for (let i = 0; i < 7; i++) console.log(arr[i]);
         break;
       }
     }
   }
-  arr.sort((a, b) => a - b);
-  for (let i = 0; i < 7; i++) console.log(arr[i]);
 }
 
 solution();

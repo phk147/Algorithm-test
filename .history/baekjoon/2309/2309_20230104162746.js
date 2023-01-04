@@ -7,7 +7,7 @@
  */
 
 let input = require("fs")
-  .readFileSync("input.txt")
+  .readFileSync("/dev/stdin")
   .toString()
   .trim()
   .split("\n")

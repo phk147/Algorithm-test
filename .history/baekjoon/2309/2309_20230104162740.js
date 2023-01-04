@@ -7,7 +7,7 @@
  */
 
 let input = require("fs")
-  .readFileSync("input.txt")
+  .readFileSync("/dev/stdin")
   .toString()
   .trim()
   .split("\n")
@@ -24,8 +24,6 @@ function solution() {
       }
     }
   }
-  arr.sort((a, b) => a - b);
-  for (let i = 0; i < 7; i++) console.log(arr[i]);
 }
 
 solution();
