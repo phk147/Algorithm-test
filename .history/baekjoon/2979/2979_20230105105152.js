@@ -30,8 +30,11 @@ function solution() {
 
     if (cnt === 0) continue;
     else if (cnt === 1) result += a;
-    else if (cnt === 2) result += b * 2;
-    else if (cnt === 3) result += c * 3;
+    else if (cnt === 2) result += b;
+    else if (cnt === 3) result += c;
+
+    console.log("cnt", cnt);
+    console.log(result);
   }
 
   console.log(result);

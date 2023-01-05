@@ -32,6 +32,9 @@ function solution() {
     else if (cnt === 1) result += a;
     else if (cnt === 2) result += b * 2;
     else if (cnt === 3) result += c * 3;
+
+    console.log("cnt", cnt);
+    console.log(result);
   }
 
   console.log(result);

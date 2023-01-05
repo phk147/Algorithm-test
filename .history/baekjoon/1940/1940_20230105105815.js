@@ -13,6 +13,7 @@ let input = require("fs")
   .map((val) => val.trim());
 
 function solution() {
+  console.log(input);
   let n = +input.shift();
   let m = +input.shift();
   let nums = input
@@ -23,10 +24,9 @@ function solution() {
   let result = 0;
   for (let i = 0; i < n - 1; i++) {
     for (j = i + 1; j < n; j++) {
-      if (nums[i] + nums[j] === m) result++;
+      if (nums[i] + nums[j[] === m) result++;
     }
   }
-  console.log(result);
 }
 
 solution();

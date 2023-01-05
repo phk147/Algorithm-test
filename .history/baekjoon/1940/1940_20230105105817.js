@@ -13,6 +13,7 @@ let input = require("fs")
   .map((val) => val.trim());
 
 function solution() {
+  console.log(input);
   let n = +input.shift();
   let m = +input.shift();
   let nums = input
@@ -26,7 +27,6 @@ function solution() {
       if (nums[i] + nums[j] === m) result++;
     }
   }
-  console.log(result);
 }
 
 solution();

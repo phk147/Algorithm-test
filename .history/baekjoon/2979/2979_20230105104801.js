@@ -18,23 +18,11 @@ function solution() {
     .split(" ")
     .map((v) => +v);
   input = input.map((v) => v.split(" ").map((val) => +val));
-
-  let result = 0;
+  console.log(input);
 
   for (let i = 1; i <= 100; i++) {
     // 트럭 3개 확인 -> 더하기
-    let cnt = 0;
-    if (i >= input[0][0] && i < input[0][1]) cnt++;
-    if (i >= input[1][0] && i < input[1][1]) cnt++;
-    if (i >= input[2][0] && i < input[2][1]) cnt++;
-
-    if (cnt === 0) continue;
-    else if (cnt === 1) result += a;
-    else if (cnt === 2) result += b * 2;
-    else if (cnt === 3) result += c * 3;
   }
-
-  console.log(result);
 }
 
 solution();
