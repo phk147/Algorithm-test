@@ -5,19 +5,6 @@
 /**
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
-function permutation(arr, selectNum) {
-  let result = [];
-  if (selectNum === 1) return arr.map((v) => [v]);
-
-  arr.forEach((v, idx, arr) => {
-    const fixer = v;
-    const restArr = arr.filter((_, index) => index !== idx);
-    const permuationArr = permutation(restArr, selectNum - 1);
-    const combineFixer = permuationArr.map((v) => [fixer, ...v]);
-    result.push(...combineFixer);
-  });
-  return result;
-}
 
 function solution() {
   let input = require("fs")
@@ -27,16 +14,26 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-  input.sort((a, b) => a - b);
+  let n = +input.shift();
+  let str = input.map((v) => v.split(""));
+  let stack = [];
+  let result = 0;
 
-  let arr = input.map((val) => +val);
-  do {
-    let psum = 0;
-    for (let i = 0; i < 7; i++) psum += arr[i];
-    if (psum === 100) break;
-  } while (permutation(arr, 7));
+  str.forEach((v) => {
+    let len = v.length;
+    for (let i = 0; i < len; i++) {
+      let temp = v.pop();
+      if (stack.length === 0) stack.push(temp);
+      else if (stack.at(-1) === temp) stack.pop();
+      else stack.push(temp);
+    }
 
-  console.log(arr);
+    if (stack.length === 0) result++;
+
+    stack = [];
+  });
+
+  console.log(result);
 }
 
 solution();
