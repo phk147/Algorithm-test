@@ -6,24 +6,22 @@
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
 
-function go(a, b, c) {
-  if (b === 1) return a % c;
-  let _c = go(a, b / 2);
-  _c = (_c * _c) % c;
-  if (b % 2) _c = (_c * a) % c;
-  return _c;
+const fs = require("fs");
+const [A, B, C] = fs.readFileSync("input.txt").toString().trim().split(" ").map(BigInt);
+
+function pow(a, b) {
+  if (b == 0) {
+    return BigInt(1);
+  } else {
+    const temp = pow(a, BigInt(parseInt(b / BigInt(2))));
+    console.log(parseInt(temp));
+    console.log("b", b % BigInt(2));
+    if (b % BigInt(2) == 0) {
+      return (temp * temp) % C;
+    } else {
+      return (temp * temp * a) % C;
+    }
+  }
 }
 
-function solution() {
-  let input = require("fs")
-    .readFileSync("input.txt") //"/dev/stdin"
-    .toString()
-    .trim()
-    .split("\n")
-    .map((val) => val.trim());
-
-  let [a, b, c] = input[0].split(" ").map((v) => +v);
-  console.log(go(a, b, c));
-}
-
-solution();
+console.log(parseInt(pow(A, B)));
