@@ -16,12 +16,9 @@ function solution(input) {
     .shift()
     .split(" ")
     .map((v) => +v);
-  let graph = [];
-  for (let i = 0; i < n; i++) {
-    graph.push(input.shift().split(""));
-  }
+  let graph = input.map((v) => v.split(""));
 
-  let visit = new Array(n).fill().map(() => new Array(m).fill(-1));
+  let visit = new Array(n).fill().map(() => new Array(m).fill(0));
 
   let answer = BFS(0, 0, graph, visit, n, m);
 
@@ -32,7 +29,7 @@ function BFS(x, y, graph, visit, n, m) {
   let dx = [0, 1, 0, -1];
   let dy = [1, 0, -1, 0];
   let queue = [];
-  visit[x][y] = 0;
+  visit[x][y] = 1;
   queue.push([x, y]);
   while (queue.length !== 0) {
     let [curX, curY] = queue.shift();
@@ -40,14 +37,13 @@ function BFS(x, y, graph, visit, n, m) {
       let nx = curX + dx[dir];
       let ny = curY + dy[dir];
       if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-      if (visit[nx][ny] >= 0 || graph[nx][ny] === "0") continue;
+      if (visit[nx][ny] !== 0 || graph[nx][ny] === "0") continue;
       visit[nx][ny] = visit[curX][curY] + 1;
       queue.push([nx, ny]);
     }
   }
-  console.log(visit);
 
-  return visit[n - 1][m - 1] + 1;
+  return visit[n - 1][m - 1];
 }
 
 solution(input);
