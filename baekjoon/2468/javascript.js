@@ -5,83 +5,68 @@
 /**
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
-let input = require("fs")
-  .readFileSync("input.txt") //"/dev/stdin"
-  .toString()
-  .split("\n")
-  .map((val) => val.trim());
+ let input = require("fs")
+ .readFileSync("input.txt") //"/dev/stdin"
+ .toString()
+ .split("\n")
+ .map((val) => val.trim());
 
-let n = +input.shift();
-let graph = [];
-let vis = new Array(n).fill().map(() => new Array(n).fill(0));
+ 
+ let n = +input.shift();
+ let graph = input.map(v=>v.split(" ").map(val=>+val));
+ 
+ let dx = [1, 0, -1, 0];
+ let dy = [0, 1, 0, -1];
 
-class Queue {
-  constructor() {
-    this.arr = [];
-    this.head = 0;
-    this.tail = 0;
-  }
-  push(data) {
-    this.arr[this.tail++] = data;
-  }
-
-  pop() {
-    return this.arr[this.head++];
-  }
-  size() {
-    return this.tail - this.head;
-  }
-}
-
-let dx = [1, 0, -1, 0];
-let dy = [0, 1, 0, -1];
-
-function BFS(x, y, cgraph, cvis, i) {
-  cvis[x][y] = 1;
-  let q = new Queue();
-  q.push([x, y]);
-  while (q.size() !== 0) {
-    let [X, Y] = q.pop();
-    for (let dir = 0; dir < 4; dir++) {
-      let nx = X + dx[dir];
-      let ny = Y + dy[dir];
-      if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
-      if (cgraph[nx][ny] <= i || cvis[nx][ny] === 1) continue;
-      cvis[nx][ny] = 1;
-      q.push([nx, ny]);
+ const bfs=(x,y,vis,high)=>{
+  let queue = [];
+  vis[x][y]=1;
+  queue.push([x,y]);
+  while(queue.length!==0){
+    let [cx,cy] = queue.shift();
+    for(let dir=0;dir<4;dir++){
+      let nx = cx+dx[dir];
+      let ny = cy+dy[dir];
+      if(nx<0||nx>=n||ny<0||ny>=n)continue;
+      if(graph[nx][ny]<=high||vis[nx][ny]===1)continue;
+      vis[nx][ny]=1;
+      queue.push([nx,ny]);
     }
   }
-}
+ }
 
-function solution() {
-  for (let i = 0; i < n; i++) {
-    graph.push(
-      input
-        .shift()
-        .split(" ")
-        .map((v) => +v)
-    );
+ const dfs = (x,y,vis,high) =>{
+  vis[x][y]=1;
+  for(let dir=0;dir<4;dir++){
+    let nx = x+dx[dir];
+    let ny = y+dy[dir];
+    if(nx<0||nx>=n||ny<0||ny>=n)continue;
+    if(graph[nx][ny]<=high||vis[nx][ny]===1)continue;
+    dfs(nx,ny,vis,high);
   }
+ }
 
-  let answer = 1;
+ 
+ function solution() {
 
-  for (let i = 1; i <= 100; i++) {
-    let copyGraph = graph.map((v) => [...v]);
-    let copyVis = vis.map((v) => [...v]);
-    let cnt = 0;
-    for (let a = 0; a < n; a++) {
-      for (let b = 0; b < n; b++) {
-        if (copyGraph[a][b] > i && copyVis[a][b] === 0) {
+  let result =1;
+
+  for(let h=1;h<=100;h++){
+    let vis = new Array(n).fill().map(v=>new Array(n).fill(0));
+    
+    let cnt=0;
+
+    for(let i=0;i<n;i++){
+      for(let j=0;j<n;j++){
+        if(graph[i][j]>h&&vis[i][j]===0){
+          dfs(i,j,vis,h);
           cnt++;
-          BFS(a, b, copyGraph, copyVis, i);
         }
       }
     }
-
-    answer = Math.max(answer, cnt);
+    if(cnt>result) result=cnt;
   }
-
-  console.log(answer);
-}
-
-solution();
+  console.log(result);
+ }
+ 
+ solution();
