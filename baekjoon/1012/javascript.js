@@ -11,78 +11,64 @@ let input = require("fs")
   .split("\n")
   .map((val) => val.trim());
 
-let t = +input.shift();
-let n, m;
-
-let graph;
-let vis;
-
-class Queue {
-  constructor() {
-    this.arr = [];
-    this.head = 0;
-    this.tail = 0;
-  }
-  push(data) {
-    this.arr[this.tail++] = data;
-  }
-
-  pop() {
-    return this.arr[this.head++];
-  }
-  size() {
-    return this.tail - this.head;
-  }
-}
-
 let dx = [1, 0, -1, 0];
 let dy = [0, 1, 0, -1];
 
-function BFS(x, y) {
-  vis[x][y] = 1;
-  let q = new Queue();
-  q.push([x, y]);
-  while (q.size() !== 0) {
-    let [X, Y] = q.pop();
+const bfs = (map, visited, x, y) => {
+  let queue = [];
+  visited[x][y] = 1;
+  queue.push([x, y]);
+  while (queue.length !== 0) {
+    let [cx, cy] = queue.shift();
     for (let dir = 0; dir < 4; dir++) {
-      let nx = X + dx[dir];
-      let ny = Y + dy[dir];
-      if (nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
-      if (graph[nx][ny] !== 1 || vis[nx][ny] === 1) continue;
-      vis[nx][ny] = 1;
-      q.push([nx, ny]);
+      let nx = cx + dx[dir];
+      let ny = cy + dy[dir];
+      if (nx < 0 || nx >= map.length || ny < 0 || ny >= map[0].length) continue;
+      if (map[nx][ny] === 0 || visited[nx][ny] === 1) continue;
+      visited[nx][ny] = 1;
+      queue.push([nx, ny]);
     }
   }
-}
+};
+
+const dfs = (map, visited, x, y) => {
+  visited[x][y] = 1;
+  for (let dir = 0; dir < 4; dir++) {
+    let nx = x + dx[dir];
+    let ny = y + dy[dir];
+    if (nx < 0 || nx >= map.length || ny < 0 || ny >= map[0].length) continue;
+    if (map[nx][ny] === 0 || visited[nx][ny] === 1) continue;
+    dfs(map, visited, nx, ny);
+  }
+};
 
 function solution() {
+  let t = +input.shift();
   while (t--) {
-    graph = new Array(51).fill().map(() => new Array(51).fill(0));
-    vis = new Array(51).fill().map(() => new Array(51).fill(0));
-    let cnt = 0;
     let [m, n, k] = input
       .shift()
       .split(" ")
       .map((v) => +v);
-
+    let map = new Array(n).fill().map((v) => new Array(m).fill(0));
+    let visited = new Array(n).fill().map((v) => new Array(m).fill(0));
+    let count = 0;
     for (let i = 0; i < k; i++) {
       let [x, y] = input
         .shift()
         .split(" ")
         .map((v) => +v);
-      graph[y][x] = 1;
+      map[y][x] = 1;
     }
-
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < m; j++) {
-        if (graph[i][j] === 1 && vis[i][j] === 0) {
-          cnt++;
-          BFS(i, j);
+        if (map[i][j] === 1 && visited[i][j] === 0) {
+          dfs(map, visited, i, j);
+          count++;
         }
       }
     }
 
-    console.log(cnt);
+    console.log(count);
   }
 }
 
