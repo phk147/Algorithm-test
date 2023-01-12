@@ -27,6 +27,7 @@ int main()
           ret += (temp-r);
         }
       }
+
     }
 
   cout<<ret<<"\n";
