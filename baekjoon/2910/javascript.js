@@ -18,35 +18,24 @@ let [n, c] = input
 let arr = input[0].split(" ").map((v) => +v);
 function solution() {
   let answer = [];
-  let hs = new Map();
 
-  for (let i = 0; i < n; i++) {
-    let temp = arr[i];
-    if (hs.has(temp)) {
-      let [cnt, idx] = hs.get(temp);
-      cnt++;
-      hs.set(temp, [cnt, idx]);
+  let count = [];
+
+  // 카운트, 나온 순서
+  for (let i = 0; i < arr.length; i++) {
+    if (count.find((v) => v.num === arr[i])) {
+      count[count.findIndex((v) => v.num === arr[i])].count++;
     } else {
-      hs.set(temp, [1, i]);
+      count.push({ num: arr[i], count: 1 });
     }
   }
+  count.sort((a, b) => b.count - a.count);
 
-  let tmp = [];
-  for (const [key, val] of hs) {
-    tmp.push([key, val]);
-  }
-
-  tmp.sort((a, b) => {
-    if (a[1][0] === b[1][0]) return a[1][1] - b[1][1];
-    else return b[1][0] - a[1][0];
+  count.forEach((v) => {
+    for (let i = 0; i < v.count; i++) {
+      answer.push(v.num);
+    }
   });
-
-  for (const [key, [cnt, idx]] of tmp) {
-    for (let i = 0; i < cnt; i++) {
-      answer.push(key);
-    }
-  }
-
   console.log(answer.join(" "));
 }
 
