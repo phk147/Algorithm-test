@@ -14,39 +14,33 @@ let input = require("fs")
 let n = +input.shift();
 
 function solution() {
+
   let nums = [];
-  for (let i = 0; i < n; i++) {
-    let temp = input.shift();
-    let n = [];
-
-    for (let j = 0; j < temp.length; j++) {
-      let tmp = temp.charCodeAt(j);
-      //number
-      if (!(tmp >= 97 && tmp <= 122)) {
-        let num = String.fromCharCode(tmp);
-
-        if (num === "0") {
-          if (temp[j + 1] === "0") continue;
-          else if ((temp.charCodeAt(j + 1) >= 97 && temp.charCodeAt(j + 1) <= 122) || j === temp.length - 1) {
-            nums.push(num);
-          } else {
-            continue;
-          }
-        } else {
-          n.push(num);
-        }
+  for(let i=0;i<input.length;i++){
+    let word = input[i].split("");
+    let num ="";
+    for(let j=0;j<word.length;j++){
+      if(97<=word[j].charCodeAt()&&word[i].charCodeAt()<=122){
+        if(num==="") continue;
+        nums.push(num);
+        num="";
       } else {
-        if (n.length !== 0) {
-          nums.push(n.join(""));
-          n = [];
-        }
+        num+=word[j];
       }
     }
-    if (n.length !== 0) nums.push(n.join(""));
+    if(num!=="") nums.push(num);
   }
 
-  nums.sort((a, b) => +a - +b);
-  console.log(nums.join("\n"));
+  let answer = nums.map(v=>{
+    if(v[0]==="0"){
+      v= v.split("").reduce((acc,cur)=>Number(acc)+Number(cur));
+      return v;
+    }
+    return +v;
+  }).sort((a,b)=>a-b);
+
+
+  console.log(answer.map(BigInt).join("\n"));
 }
 
 solution();
