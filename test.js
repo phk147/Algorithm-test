@@ -1,17 +1,12 @@
-var value = 1;
-
-var obj = {
-  value: 100,
-  foo: function() {
-    setTimeout(function() {
-      console.log("callback's this: ",  this);  // ?
-      console.log("callback's this.value: ",  this.value);  // ?
-      function bar() {
-        console.log("bar's this: ", this);  // ?
-      }
-      bar();
-    }, 1000);
+let count =0;
+for(let i=0;i<1000000000000000000;i++){
+  let temp = i.split("");
+  for(let j=1;j<temp.length;j++){
+    if(temp[j-1]==='1'&&temp[j]==='3') {
+      count++;
+      break;
+    }
   }
-};
+}
 
-obj.foo();
+console.log(count);
