@@ -11,8 +11,26 @@ let input = require("fs")
   .split("\n")
   .map((val) => val.trim());
 
-  console.log(input);
+
+  let t = +input.shift();
+  input = input.map(v=>+v);
+
 function solution() {
+
+
+  while(t--){
+    let n = input.shift();
+
+    let five = 0;
+
+
+    for(let i=5;i<=n;i*=5){
+      five+=Math.floor(n/i);
+    }
+
+    console.log(five);
+   
+  }
 
   
 }
