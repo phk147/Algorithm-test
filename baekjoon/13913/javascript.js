@@ -12,7 +12,41 @@ function solution() {
     .split("\n")
     .map((val) => val.trim());
 
-    console.log(input);
+  let [n, k] = input[0].split(" ").map((v) => +v);
+  let max = 200000;
+
+  let vis = new Array(max + 4);
+
+  const bfs = (start, end) => {
+    let queue = [];
+    vis[start] = [1, [start]];
+    queue.push(start);
+    while (queue.length) {
+      let cur = queue.shift();
+      for (let dir = 0; dir < 3; dir++) {
+        let next;
+        if (dir === 0) next = cur * 2;
+        else if (dir === 1) next = cur + 1;
+        else next = cur - 1;
+
+        if (next >= 0 && next < max) {
+          if (next === end) {
+            console.log(vis[cur][0]);
+            console.log([...vis[cur][1], next].join(" "));
+            return;
+          }
+          if (!vis[next]) {
+            queue.push(next);
+            vis[next] = [vis[cur][0] + 1, [...vis[cur][1], next]];
+          } else if (vis[next][0] === vis[cur][0] + 1) {
+            vis[next][1] = [...vis[cur][1], next];
+          }
+        }
+      }
+    }
+  };
+
+  bfs(n, k);
 }
 
 solution();
