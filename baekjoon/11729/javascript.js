@@ -5,33 +5,32 @@
 /**
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
-let answer = [];
-let count = 0;
+
+let ans = [];
+const rcs = (a, b, n) => {
+  if (n === 1) {
+    ans.push([a, b]);
+    return;
+  }
+
+  rcs(a, 6 - a - b, n - 1);
+  ans.push([a, b]);
+  rcs(6 - a - b, b, n - 1);
+};
+
 function solution() {
   let input = require("fs")
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
-    .trim()
     .split("\n")
     .map((val) => val.trim());
 
   let n = +input[0];
 
-  Hanoi(n, "1", "2", "3");
-  console.log(count);
-  console.log(answer);
-}
+  rcs(1, 3, n);
 
-function Hanoi(num, from, other, to) {
-  if (num === 0) {
-    return;
-  } else {
-    Hanoi(num - 1, from, to, other);
-    console.log(`${from}에서 ${to}로 이동`);
-    answer.push([from, to]);
-    count++;
-    Hanoi(num - 1, other, from, to);
-  }
+  console.log(ans.length);
+  console.log(ans.map((v) => v.join(" ")).join("\n"));
 }
 
 solution();
