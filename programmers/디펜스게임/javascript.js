@@ -11,53 +11,58 @@ function solution() {
 
   // n ->life k->pass
 
+  let answer = 0;
 
-  let count=0;
+  if(k>=enemy.length) return enemy.length;
 
-  if(k>enemy.length) return enemy.length;
-  
-  let max = new Array(k).fill(-1);
-  let psum = [];
-  let cur=0;
+  let psum = 0;
+  let pass = new Array(k).fill(-1);
 
   for(let i=0;i<enemy.length;i++){
-    let num = enemy[i];
+    let numE = enemy[i];
 
-    console.log("count",count);
-    console.log("cur",cur);
-    console.log("num",num);
+    if(psum+numE <=n){
+      psum+=numE;
+      answer++;
 
-    
-    if(n>=cur+num){
-      cur+=num;
-      for(let j=0;j<max.length;j++){
-        if(max[j]<num) {
-          max[j]=num;
-          break;
-        }
-      }
+      // 큰 수를 저장해둔다
     } else {
-      // 적의 합계가 넘어감 -> 무적권 사용 타이밍
-      max.sort((a,b)=>a-b);
-      while(max.length){
-        if(cur+num<=n) break;
-        let addLife = max.pop();
-        if(num>cur - addLife && max[0]===-1) {max[0]=addLife};
-        cur -= addLife;
+     
+      console.log("!",i);
+      pass.sort((a,b)=>a-b);
+      while(numE+psum > n&&pass.length){
+        let temp = pass.pop();
+        if(temp === -1) {answer++; break;}
+        psum-=temp;
+        answer++;
       }
+      
+      if(!pass.length&&numE+psum >n) break;
+      
+      psum+=numE;
+      
 
-      console.log(count,cur);
+    }
 
-      if(n>=cur+num){
-        cur+=num;
+    if(pass.length){
+
+      for(let j=0;j<pass.length;j++){
+        if(pass[j]<numE) {pass[j]=numE; break;}
       }
     }
 
-    count++;
+    console.log("-----------------")
+    console.log("i",i);
+    console.log("answer",answer);
+    console.log("numE",numE);
+    console.log("psum",psum);
+    console.log("pass",pass);
+    console.log("-----------------")
 
+    
   }
 
-  console.log(count);
+  console.log(answer);
 }
 
 solution();
