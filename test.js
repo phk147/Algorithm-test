@@ -1,11 +1,4 @@
-const name = "Hong-gil-dong";
+let arr = [1, 2, 3, 4, 5];
+let arr2 = [...arr];
 
-function foo() {
-  this.name = "John-doe";
-  // this.name = name.substring(0,4);
-
-  console.log(name);
-  console.log(this.name);
-}
-
-foo();
+console.log(arr === arr2);
