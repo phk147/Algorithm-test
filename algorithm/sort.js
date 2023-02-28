@@ -9,7 +9,6 @@ function selectionSort(arr) {
         min_index = j;
       }
     }
-    //구조 분해 할당
     [arr[i], arr[min_index]] = [arr[min_index], arr[i]];
   }
 
@@ -27,23 +26,22 @@ function insertionSort(arr) {
   console.log(arr);
 }
 
-function quickSort(arr, start, end) {
-  if (start >= end) return;
-  let pivot = start;
-  let left = start + 1;
-  let right = end;
-  while (left <= right) {
-    //left pivot보다 큰 수 찾기
-    while (left <= end && arr[left] <= arr[pivot]) left++;
-    //right pivot보다 작은 수 찾기
-    while (right > start && arr[right] > arr[pivot]) right--;
-    //left,right가 엇갈리는 순간 pivot 변경
-    if (left > right) [arr[pivot], arr[right]] = [arr[right], arr[pivot]];
-    else [arr[left], arr[right]] = [arr[right], arr[left]];
+const quickSort = (arr) => {
+  if (arr.length <= 1) return arr;
+
+  const pivot = arr[0];
+  const left = [];
+  const right = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] <= pivot) left.push(arr[i]);
+    else right.push(arr[i]);
   }
-  quickSort(arr, start, right - 1);
-  quickSort(arr, right + 1, end);
-}
+
+  const lSorted = quickSort(left);
+  const rSorted = quickSort(right);
+  return [...lSorted, pivot, ...rSorted];
+};
 
 function countingSort(arr) {
   let count = new Array(10).fill(0);
