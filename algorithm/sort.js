@@ -19,6 +19,7 @@ function insertionSort(arr) {
   for (let i = 1; i < len; i++) {
     for (let j = i; j > 0; j--) {
       if (arr[j] < arr[j - 1]) {
+        console.log(array);
         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
       } else break;
     }
