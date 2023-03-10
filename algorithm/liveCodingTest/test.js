@@ -11,11 +11,36 @@ function func() {
   };
 }
 
-let a = func();
+class Test {
+  constructor(size) {
+    this.size = size;
+    this.arr = [];
+  }
 
-a.add(1);
-a.add(2);
-a.add(3);
-a.pop();
+  add(num) {
+    if (this.arr.length > this.size) return;
+    this.arr.push(num);
+  }
 
-console.log(a);
+  remove() {
+    if (!this.arr.length) return;
+    this.arr.pop();
+  }
+}
+
+let test = new Test(5);
+test.add(5);
+test.add(3);
+test.add(4);
+test.remove();
+
+console.log(test);
+
+// let a = func();
+
+// a.add(1);
+// a.add(2);
+// a.add(3);
+// a.pop();
+
+// console.log(a);

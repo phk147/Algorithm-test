@@ -11,7 +11,7 @@ function merge(left, right) {
 }
 
 function mergeSort(arr) {
-  if (arr.length === 1) return arr;
+  if (arr.length < 2) return arr;
   const boundary = Math.floor(arr.length / 2);
   //slice로 해주기 때문에 원본 arr은 손상 없다.
   const left = arr.slice(0, boundary);
