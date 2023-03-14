@@ -25,6 +25,7 @@ function solution() {
   const dx = [-1, 0, 1, 0];
   const dy = [0, -1, 0, 1];
   let vis = new Array(n).fill().map((_) => new Array(m).fill(0));
+  let answer = 0;
   const bfs = (x, y, d, vis) => {
     // 현재 칸이 아직 청소되지 않은 경우 현재 칸을 청소
     let queue = [];
@@ -33,16 +34,15 @@ function solution() {
     let cnt = 1;
     while (queue.length) {
       let [cx, cy, cd] = queue.shift();
-      console.log(cx, cy, cd);
       let flag = 1;
       let check = 4;
       // 현재 칸의 주변 4칸 중 청소되지 않은 칸이 있으면 반시계방향으로 90도 회전 후 청소되지 않은 칸이면 전진
       while (check) {
         check--;
+        cd = (cd + 1) % 4;
         let nx = cx + dx[cd];
         let ny = cy + dy[cd];
         if (nx < 0 || nx >= n || ny < 0 || ny >= m || graph[nx][ny] === 1 || vis[nx][ny] === 1) {
-          cd = (cd + 1) % 4;
           continue;
         }
         flag = 0;
@@ -58,9 +58,7 @@ function solution() {
         let nx = cx - dx[cd];
         let ny = cy - dy[cd];
         if (graph[nx][ny] === 1) return cnt;
-        vis[nx][ny] = 1;
-        cnt++;
-        queue.push([nx, nx, cd]);
+        queue.push([nx, ny, cd]);
       }
     }
   };
