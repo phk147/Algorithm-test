@@ -39,7 +39,7 @@ while(1):
         if c=="D":
             d=(d+1)%4
         else:
-            d=(d-1)%4
+            d = 3 if d == 0 else (d - 1) % 4
         if(lCnt<l-1):
             lCnt+=1
     

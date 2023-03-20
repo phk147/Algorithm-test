@@ -9,8 +9,11 @@ function solution() {
   let input = require("fs")
     .readFileSync("input.txt") //"/dev/stdin"
     .toString()
-    .split("\n")
+    .split("")
     .map((val) => val.trim());
+
+  let s = input.reverse();
+  console.log(s);
 }
 
 solution();
