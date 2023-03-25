@@ -7,7 +7,7 @@
  */
 function solution() {
   let input = require("fs")
-    .readFileSync("input.txt") //"/dev/stdin"
+    .readFileSync("input.txt")
     .toString()
     .split("\n")
     .map((val) => val.trim());
@@ -16,57 +16,47 @@ function solution() {
     .shift()
     .split(" ")
     .map((v) => +v);
+
   let durability = input
     .shift()
     .split(" ")
     .map((v) => +v);
 
-  let track1 = durability.slice(0, n);
-  let track2 = durability.slice(n);
+  let robots = new Array(n).fill(0);
+  let ans = 0;
 
-  let cnt = 0;
-  let robots = [];
+  const rotation = (durability, robots) => {
+    let temp = durability.pop();
+    durability.unshift(temp);
+    robots.pop();
+    robots.unshift(0);
+    if (robots[n - 1] === 1) robots[n - 1] = 0;
+  };
+
+  const moveRobot = (durability, robots) => {
+    for (let i = robots.length - 2; i >= 0; i--) {
+      if (robots[i] && durability[i + 1] >= 1 && !robots[i + 1]) {
+        durability[i + 1]--;
+        robots[i] = 0;
+        robots[i + 1] = 1;
+      }
+    }
+    if (robots[n - 1] === 1) robots[n - 1] = 0;
+  };
+
   while (1) {
-    console.log("t1", track1);
-    console.log("t2", track2);
-    console.log("robot", robots);
-
-    if (track1.filter((v) => v === 0).length + track2.filter((v) => v === 0).length >= k) {
-      console.log(cnt);
+    if (durability.filter((v) => v === 0).length >= k) {
+      console.log(ans);
       break;
     }
 
-    // 컨테이너 벨트 한 칸 이동
-    let temp1 = track1.pop();
-    let temp2 = track2.shift();
-    track1.unshift(temp2);
-    track2.push(temp1);
-
-    if (robots.length) {
-      for (let i = 0; i < robots.length; i++) {
-        robots[i]++;
-        track1[robots[i]]--;
-        if (robots[i] >= n - 1) {
-          robots.splice(i, 1);
-          i--;
-        }
-      }
-
-      for (let i = 0; i < robots.length; i++) {
-        robots[i]++;
-        track1[robots[i]]--;
-        if (robots[i] >= n - 1) {
-          robots.splice(i, 1);
-          i--;
-        }
-      }
+    ans++;
+    rotation(durability, robots);
+    moveRobot(durability, robots);
+    if (robots[0] === 0 && durability[0] > 0) {
+      robots[0] = 1;
+      durability[0]--;
     }
-
-    if (track1[0]) {
-      robots.push(0);
-      track1[0]--;
-    }
-    cnt++;
   }
 }
 
