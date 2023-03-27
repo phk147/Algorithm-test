@@ -3,8 +3,6 @@
  */
 //  let input = require("fs").readFileSync("/dev/stdin").toString().trim().split("\n")
 
-const { count } = require("console");
-
 /**
  * 로컬용, 예제.txt를 생성해서 예제를 복붙하자.
  */
